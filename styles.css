@@ -104,11 +104,18 @@ nav ul li a:hover {
     transform: scale(1.1);
 }
 
+.panels {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
 .panel {
     background-color: rgba(50, 50, 50, 0.6);
-    margin: 1em auto;
-    padding: 2em;
-    width: 60%;
+    margin: 0.5em;
+    padding: 1em;
+    width: 30%;
     border-radius: 10px;
     transition: transform 0.3s;
 }
