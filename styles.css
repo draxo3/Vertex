@@ -82,6 +82,28 @@ nav ul li a:hover {
     padding: 2em 0;
 }
 
+.packs {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 2em;
+}
+
+.pack {
+    text-align: center;
+}
+
+.pack img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.pack img:hover {
+    transform: scale(1.1);
+}
+
 .panel {
     background-color: rgba(50, 50, 50, 0.6);
     margin: 1em auto;
