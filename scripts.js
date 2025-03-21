@@ -16,7 +16,7 @@ function openPack(imageSrc, packName) {
         <img src="${imageSrc}" alt="${packName}">
         <p>${packName}</p>
         <input type="email" id="emailInput" placeholder="Enter your email"><br>
-        <button id="payNowButton">Pay Now - $5</button>
+        <button id="payNowButton" style="background-color: #555; color: #FFF;">Pay Now - $5</button>
         <div id="paymentForm" style="display: none;">
             <button id="paypalButton">Pay with PayPal</button>
         </div>
@@ -54,10 +54,8 @@ function closePanel() {
 function closeProfilePanel() {
     var profilePanel = document.getElementById('profilePanel');
     profilePanel.style.display = 'none';
-    profilePanel.innerHTML = '';
 }
 
-// Search functionality
 document.getElementById('searchInput').addEventListener('input', function() {
     var searchValue = this.value.toLowerCase();
     var packs = document.querySelectorAll('.pack');
@@ -70,19 +68,23 @@ document.getElementById('searchInput').addEventListener('input', function() {
     });
 });
 
-// Profile management
 document.getElementById('profileButton').addEventListener('click', function() {
     var profilePanel = document.getElementById('profilePanel');
     profilePanel.style.display = 'block';
+    
+    var storedEmail = localStorage.getItem('email');
+    var storedPassword = localStorage.getItem('password');
+    var storedProfilePicture = localStorage.getItem('profilePicture');
+
     profilePanel.innerHTML = `
         <h2>Profile Settings</h2>
         <form>
             <label for="profileEmail">Email:</label>
-            <input type="email" id="profileEmail" placeholder="Enter your email"><br>
+            <input type="email" id="profileEmail" placeholder="Enter your email" value="${storedEmail || ''}"><br>
             <label for="profilePassword">Password:</label>
-            <input type="password" id="profilePassword" placeholder="Enter your password"><br>
+            <input type="password" id="profilePassword" placeholder="Enter your password" value="${storedPassword || ''}"><br>
             <label for="profilePicture">Profile Picture:</label>
-            <input type="file" id="profilePicture"><br>
+            <input type="file" id="profilePicture" accept="image/*"><br>
             <button type="button" id="saveProfileButton">Save</button>
         </form>
         <button class="close-button" onclick="closeProfilePanel()">Close</button>
@@ -91,13 +93,32 @@ document.getElementById('profileButton').addEventListener('click', function() {
     document.getElementById('saveProfileButton').addEventListener('click', function() {
         var email = document.getElementById('profileEmail').value;
         var password = document.getElementById('profilePassword').value;
-        var profilePicture = document.getElementById('profilePicture').files[0];
+        var profilePictureFile = document.getElementById('profilePicture').files[0];
+
         if (email && password) {
-            // Simulate saving profile information
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            
+            if (profilePictureFile) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('profilePicture', e.target.result);
+                    document.getElementById('profileButton').src = e.target.result;
+                };
+                reader.readAsDataURL(profilePictureFile);
+            }
+
             alert('Profile saved!');
             closeProfilePanel();
         } else {
             alert('Please fill out all fields.');
         }
     });
+});
+
+window.addEventListener('load', function() {
+    var storedProfilePicture = localStorage.getItem('profilePicture');
+    if (storedProfilePicture) {
+        document.getElementById('profileButton').src = storedProfilePicture;
+    }
 });
