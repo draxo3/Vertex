@@ -22,6 +22,7 @@ body {
     font-size: 3em;
     color: #FFF;
     text-shadow: 0 0 10px #FFF;
+    margin-bottom: 0.5em;
 }
 
 .search-cart {
@@ -54,6 +55,13 @@ body {
 
 .profile {
     margin-right: 1em;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .content {
@@ -113,7 +121,7 @@ body {
     color: #FFF;
 }
 
-input[type="email"] {
+input[type="email"], input[type="password"], input[type="file"] {
     padding: 0.5em;
     width: 200px;
     border: none;
