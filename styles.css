@@ -91,6 +91,7 @@ body {
     width: 30%;
     border-radius: 10px;
     transition: transform 0.3s;
+    display: none; /* Panels are hidden by default */
 }
 
 .panel:hover {
