@@ -13,6 +13,9 @@ body {
     background-color: #000;
     padding: 1em 0;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header .title {
@@ -22,9 +25,7 @@ body {
 }
 
 .search-cart {
-    margin-top: 1em;
     display: flex;
-    justify-content: center;
     gap: 1em;
 }
 
@@ -37,7 +38,7 @@ body {
     color: #FFF;
 }
 
-.search-cart button {
+.search-cart button, .profile button {
     padding: 0.5em 1em;
     border: none;
     border-radius: 5px;
@@ -47,8 +48,12 @@ body {
     transition: background-color 0.3s;
 }
 
-.search-cart button:hover {
+.search-cart button:hover, .profile button:hover {
     background-color: #0056b3;
+}
+
+.profile {
+    margin-right: 1em;
 }
 
 .content {
@@ -106,4 +111,28 @@ body {
     background-color: #000;
     padding: 1em 0;
     color: #FFF;
+}
+
+input[type="email"] {
+    padding: 0.5em;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #FFF;
+    margin-bottom: 1em;
+}
+
+.close-button {
+    background-color: #FF0000;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #CC0000;
 }
