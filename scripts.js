@@ -15,9 +15,9 @@ function openPack(imageSrc, packName) {
     paymentPanel.innerHTML = `
         <img src="${imageSrc}" alt="${packName}">
         <p>${packName}</p>
+        <input type="email" id="emailInput" placeholder="Enter your email"><br>
         <button id="payNowButton">Pay Now - $5</button>
         <div id="paymentForm" style="display: none;">
-            <input type="email" id="emailInput" placeholder="Enter your email">
             <button id="paypalButton">Pay with PayPal</button>
         </div>
         <button class="close-button" onclick="closePanel()">Close</button>
@@ -51,6 +51,12 @@ function closePanel() {
     paymentPanel.innerHTML = '';
 }
 
+function closeProfilePanel() {
+    var profilePanel = document.getElementById('profilePanel');
+    profilePanel.style.display = 'none';
+    profilePanel.innerHTML = '';
+}
+
 // Search functionality
 document.getElementById('searchInput').addEventListener('input', function() {
     var searchValue = this.value.toLowerCase();
@@ -66,5 +72,32 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
 // Profile management
 document.getElementById('profileButton').addEventListener('click', function() {
-    // Implement profile management functionality here
+    var profilePanel = document.getElementById('profilePanel');
+    profilePanel.style.display = 'block';
+    profilePanel.innerHTML = `
+        <h2>Profile Settings</h2>
+        <form>
+            <label for="profileEmail">Email:</label>
+            <input type="email" id="profileEmail" placeholder="Enter your email"><br>
+            <label for="profilePassword">Password:</label>
+            <input type="password" id="profilePassword" placeholder="Enter your password"><br>
+            <label for="profilePicture">Profile Picture:</label>
+            <input type="file" id="profilePicture"><br>
+            <button type="button" id="saveProfileButton">Save</button>
+        </form>
+        <button class="close-button" onclick="closeProfilePanel()">Close</button>
+    `;
+
+    document.getElementById('saveProfileButton').addEventListener('click', function() {
+        var email = document.getElementById('profileEmail').value;
+        var password = document.getElementById('profilePassword').value;
+        var profilePicture = document.getElementById('profilePicture').files[0];
+        if (email && password) {
+            // Simulate saving profile information
+            alert('Profile saved!');
+            closeProfilePanel();
+        } else {
+            alert('Please fill out all fields.');
+        }
+    });
 });
