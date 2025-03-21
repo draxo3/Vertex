@@ -16,6 +16,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
 }
 
 .header .title {
@@ -43,18 +44,20 @@ body {
     padding: 0.5em 1em;
     border: none;
     border-radius: 5px;
-    background-color: #1E90FF;
+    background-color: #555;
     color: #FFF;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .search-cart button:hover, .profile button:hover {
-    background-color: #0056b3;
+    background-color: #888;
 }
 
 .profile {
-    margin-right: 1em;
+    position: absolute;
+    top: 1em;
+    right: 1em;
 }
 
 .profile-img {
