@@ -20,6 +20,7 @@ function openPack(imageSrc, packName) {
             <input type="email" id="emailInput" placeholder="Enter your email">
             <button id="paypalButton">Pay with PayPal</button>
         </div>
+        <button class="close-button" onclick="closePanel()">Close</button>
     `;
 
     document.getElementById('payNowButton').addEventListener('click', function() {
@@ -43,3 +44,27 @@ function openPack(imageSrc, packName) {
         }
     });
 }
+
+function closePanel() {
+    var paymentPanel = document.getElementById('paymentPanel');
+    paymentPanel.style.display = 'none';
+    paymentPanel.innerHTML = '';
+}
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function() {
+    var searchValue = this.value.toLowerCase();
+    var packs = document.querySelectorAll('.pack');
+    packs.forEach(function(pack) {
+        var packName = pack.querySelector('p').textContent.toLowerCase();
+        if (packName.includes(searchValue)) {
+            var imgSrc = pack.querySelector('img').src;
+            openPack(imgSrc, packName);
+        }
+    });
+});
+
+// Profile management
+document.getElementById('profileButton').addEventListener('click', function() {
+    // Implement profile management functionality here
+});
